@@ -1,0 +1,44 @@
+The YOLO framework (You Only Look Once) on the other hand, deals with object detection
+in a different way. It takes the entire image in a single instance and predicts the bounding
+box coordinates and class probabilities for these boxes. The biggest advantage of using YOLO is
+its superb speed – it’s incredibly fast and
+can process 45 frames per second. YOLO also understands generalized object representation.
+
+, it gives a perfect description of this algorithm as it predicts classes and bounding boxes for the whole image in one run of the algorithm.
+
+YOLO performed surprisingly well as compared to the other single-shot detectors of that time in
+ terms of speed and accuracy. It is not the most accurate algorithms when it comes to object
+  detection but certainly,
+it makes that up with its impressive speed and thus is a good balance between speed and accuracy.
+
+
+The YOLO network splits the input image into a grid of S×S cells.
+If the centre of the ground truth box falls into a cell, that cell is responsible for detecting the existence of that object.
+
+Each grid cell predicts B number of bounding boxes and their objectness
+ score along with their class predictions as follows:
+
+
+ Coordinates of B bounding boxes -YOLO predicts 4 coordinates for each bounding box (bx,by,bw,bh) with
+ respect to the corresponding grid cell. Here bx, by are the x and y coordinates of
+ the midpoint of the object with respect to this grid. The value of bh is the ratio of the height of the bounding box to the height of the corresponding grid cell and bw is the ratio of the width of the bounding box to the width of the grid cell.
+Objectness score (P0) – indicates the probability that the cell contains an object.
+The objectness score is passed through a sigmoid function to be treated as a probability with a value range between 0 and 1.
+Class prediction – if the bounding box contains an object, the network predicts
+the probability of K number of classes. Where K is the total number of classes in your problem.
+
+
+
+###################
+
+
+YOLO algorithm
+There are a few different algorithms for object detection and they can be split into two groups:
+
+Algorithms based on classification – they work in two stages. In the first step, we’re selecting from the image interesting regions. Then we’re classifying those regions using convolutional neural networks. This solution could be very slow because we have to run prediction for every selected region. Most known example of this type of algorithms is the Region-based convolutional neural network (RCNN) and their cousins Fast-RCNN and Faster-RCNN.
+Algorithms based on regression – instead of selecting interesting parts of an image, we’re predicting classes and bounding boxes for the whole image in one run of the algorithm. Most known example of this type of algorithms is YOLO (You only look once) commonly used for real-time object detection.
+
+
+
+Darknet
+There are a few different implementations of YOLO algorithm on the web, but today I want to briefly introduce you to an open source neural network framework called Darknet. Darknet was written in Clanguage and CUDA technology, what makes it really fast and allows you to make computations on a GPU, which is essential for real-time predictions.
